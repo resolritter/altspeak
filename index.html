@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -33,7 +33,12 @@
     <h1>altspeak</h1>
     <section style="display: flex; flex-direction: row">
       <span style="margin-right: 1rem">Input:</span>
-      <textarea id="text" style="flex: 1"></textarea>
+      <textarea
+        id="text"
+        style="flex: 1"
+        placeholder="Type here"
+        autofocus
+      ></textarea>
     </section>
     <pre id="info" style="min-height: 1rem"></pre>
     <section id="transformed"></section>
@@ -62,11 +67,16 @@
         }
         prevText = text
         console.debug({ text })
+
+        if (text.length === 0) {
+          transformedOutputs.replaceChildren([])
+          return
+        }
+
         output = altspeak.transform(text)
 
         const renderedOutputs = []
         for (const key in output) {
-          console.debug({ key })
           const newDiv = document.createElement("div")
           newDiv.style = "display: flex; flex-direction: column;"
 
