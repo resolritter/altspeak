@@ -1,0 +1,9 @@
+#!/bin/env node
+const { transform } = require("./transform.cjs")
+
+for (const [i, arg] of process.argv.slice(2).entries()) {
+  const transformed = transform(arg)
+  for (const key of Object.keys(transformed)) {
+    console.log(`[${i}][${key}]: ${transformed[key]}`)
+  }
+}

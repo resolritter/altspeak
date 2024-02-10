@@ -1,0 +1,9 @@
+{
+  "name": "altspeak",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "devDependencies": {
+    "js-style": "github:resolritter/js-style#b8df387478f3dcbb77397c3f856557218fb9b13f"
+  }
+}
