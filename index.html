@@ -40,18 +40,16 @@
         autofocus
       ></textarea>
     </section>
-    <pre id="info" style="min-height: 1rem"></pre>
+    <pre id="info" style="min-height: 1rem; margin: 1rem 0;"> </pre>
     <section id="transformed"></section>
   </body>
   <script src="transform.cjs"></script>
   <script>
-    const {
-      altspeak,
-      navigator: { clipboard },
-    } = window
+    const { altspeak, navigator } = window
     const textInput = document.querySelector("#text")
     const transformedOutputs = document.querySelector("#transformed")
     const infoBox = document.querySelector("#info")
+    const clipboard = navigator?.clipboard
 
     const timestamped = (msg) => {
       const now = new Date()
@@ -82,22 +80,29 @@
 
           const transformedValue = output[key]
           const newButton = document.createElement("button")
-          newButton.innerText = "Copy"
-          newButton.addEventListener("click", () => {
-            clipboard
-              .writeText(transformedValue)
-              .then(() => {
-                infoBox.innerText = timestamped(`Copied ${key}`)
-              })
-              .catch((exc) => {
-                timestamped(`Exception in clipboard.writeText: ${exc}`)
-              })
-          })
+          if (clipboard) {
+            newButton.innerText = `[${key}] Copy`
+            newButton.addEventListener("click", () => {
+              clipboard
+                .writeText(transformedValue)
+                .then(() => {
+                  infoBox.innerText = timestamped(`Copied ${key}`)
+                })
+                .catch((exc) => {
+                  timestamped(`Exception in clipboard.writeText: ${exc}`)
+                })
+            })
+          } else {
+            newButton.innerText =
+              `[${key}] Clipboard is unavailable. Manually copy from below:`
+            newButton.disabled = true
+            newButton.style = "pointer-events: none;"
+          }
           newDiv.appendChild(newButton)
 
           const newPre = document.createElement("pre")
           newPre.style = "min-height: 2rem;"
-          newPre.innerText = `[${key}]: ${transformedValue}`
+          newPre.innerText = transformedValue
           newDiv.appendChild(newPre)
 
           renderedOutputs.push(newDiv)
