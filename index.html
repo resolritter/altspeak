@@ -30,7 +30,11 @@
     </style>
   </head>
   <body>
-    <h1>altspeak</h1>
+    <h1>
+      <a href="https://github.com/resolritter/altspeak" target="_blank"
+        >altspeak</a
+      >
+    </h1>
     <section style="display: flex; flex-direction: row">
       <span style="margin-right: 1rem">Input:</span>
       <textarea
@@ -40,7 +44,7 @@
         autofocus
       ></textarea>
     </section>
-    <pre id="info" style="min-height: 1rem; margin: 1rem 0;"> </pre>
+    <pre id="info" style="min-height: 1rem; margin: 1rem 0;"></pre>
     <section id="transformed"></section>
   </body>
   <script src="transform.cjs"></script>
@@ -93,8 +97,7 @@
                 })
             })
           } else {
-            newButton.innerText =
-              `[${key}] Clipboard is unavailable. Manually copy from below:`
+            newButton.innerText = `[${key}] Clipboard is unavailable. Manually copy from below:`
             newButton.disabled = true
             newButton.style = "pointer-events: none;"
           }
