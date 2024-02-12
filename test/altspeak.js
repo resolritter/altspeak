@@ -39,4 +39,21 @@ describe("altspeak", function () {
       }
     }
   })
+  it("all ASCII alphanumerical characters are defined", function () {
+    for (let i = 32; i < 127; i++) {
+      const chToFind = String.fromCodePoint(i)
+      let found = false
+      for (const [ch] of symbols) {
+        if (ch === chToFind) {
+          found = true
+          break
+        }
+      }
+      assert.equal(
+        found,
+        true,
+        `character ${quote(chToFind)} was not found in symbols`,
+      )
+    }
+  })
 })
