@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "description": "altspeak",
   "license": "BSD-3-Clause",
+  "scripts": {
+    "test": "mocha"
+  },
   "devDependencies": {
-    "js-style": "github:resolritter/js-style#b8df387478f3dcbb77397c3f856557218fb9b13f"
+    "js-style": "github:resolritter/js-style#b8df387478f3dcbb77397c3f856557218fb9b13f",
+    "mocha": "^10.3.0"
   }
 }
