@@ -103,7 +103,7 @@ const symTable = new Map([
   ["/", ["／"]],
   ["?", ["？"]],
   ["O", ["Ｏ", "O̲", "Ø", "◯", String.fromCodePoint(55296, 57103)]],
-  ["o", ["ｏ", "o̲̲", "ø", "Ꝋ", "∅"]],
+  ["o", ["ｏ", "o̲̲", "ø", "∅"]],
 ])
 
 const transform = (input) => {
