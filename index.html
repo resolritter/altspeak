@@ -27,6 +27,13 @@
       * {
         box-sizing: border-box;
       }
+      pre {
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+      }
     </style>
   </head>
   <body>
@@ -44,7 +51,7 @@
         autofocus
       ></textarea>
     </section>
-    <pre id="info" style="min-height: 1rem; margin: 1rem 0;"></pre>
+    <pre id="info" style="min-height: 1rem; margin: 1rem 0"></pre>
     <section id="transformed"></section>
   </body>
   <script src="transform.cjs"></script>
