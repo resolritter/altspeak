@@ -111,12 +111,18 @@ const symbols = [
 const symTable = new Map(symbols)
 
 const transform = (input) => {
-  // The string should be split at unicode codepoints. Array.from calls the
-  // String's iterator, which yields an item for each unicode codepoint,
-  // therefore it should be used instead of String.split.
+  /*
+    The string should be split at unicode codepoints. Array.from calls the
+    String's iterator, which yields an item for each unicode codepoint,
+    therefore it should be used instead of String.split.
+  */
   const chars = Array.from(input)
 
-  const v1 = chars.map((c) => symTable.get(c)?.[0] ?? c).join("")
+  const v1 = chars
+    .map((c) => {
+      return symTable.get(c)?.[0] ?? c
+    })
+    .join("")
 
   const v2Occurrences = new Map()
   const v2 = chars
@@ -142,5 +148,6 @@ if (typeof window !== "undefined") {
   window.altspeak = exported
 }
 if (typeof module !== "undefined") {
+  // eslint-disable-next-line no-undef
   module.exports = exported
 }

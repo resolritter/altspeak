@@ -1,3 +1,5 @@
+/* globals describe, it */
+
 const assert = require("assert")
 const { symbols } = require("../transform.cjs")
 
@@ -5,8 +7,8 @@ const quote = (ch) => {
   return ch === "'" ? `"${ch}"` : `'${ch}'`
 }
 
-describe("altspeak", function () {
-  it("should not have duplicated symbols", function () {
+describe("altspeak", () => {
+  it("should not have duplicated symbols", () => {
     const prevChars = new Map()
     for (const [ch, altSymbols] of symbols) {
       assert.equal(
@@ -26,7 +28,7 @@ describe("altspeak", function () {
       }
     }
   })
-  it("altSymbols should not have a space in them", function () {
+  it("altSymbols should not have a space in them", () => {
     for (const [ch, altSymbols] of symbols) {
       for (const altSym of altSymbols) {
         assert.equal(
@@ -39,7 +41,7 @@ describe("altspeak", function () {
       }
     }
   })
-  it("all ASCII alphanumerical characters are defined", function () {
+  it("all ASCII alphanumerical characters are defined", () => {
     for (let i = 32; i < 127; i++) {
       const chToFind = String.fromCodePoint(i)
       let found = false
