@@ -11,7 +11,7 @@ env:
   PYTHON_VERSION: 3.8.12
 
 jobs:
-  lint:
+  ci:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -49,3 +49,6 @@ jobs:
 
       - name: Run pre-commit
         run: pre-commit run --all-files --show-diff-on-failure --color=always
+
+      - name: Run tests
+        run: npm test
