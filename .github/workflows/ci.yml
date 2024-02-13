@@ -33,12 +33,18 @@ jobs:
           path: |
             ~/.cache/pre-commit
             ${{ steps.get-pip-cache.outputs.dir }}
-          key: py-lints+${{ env.PYTHON_VERSION }}+${{ hashFiles('.pre-commit-config.yaml') }}
+          key: python+${{ env.PYTHON_VERSION }}
 
       - name: Install pre-commit
         run: pip install pre-commit
 
-      - name: Set up dependencies
+      - name: Use cached NPM packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node_modules+${{ hashFiles('package-lock.json') }}
+
+      - name: Set up NPM packages
         run: npm ci
 
       - name: Run pre-commit
