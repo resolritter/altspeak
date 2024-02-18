@@ -94,14 +94,22 @@
           if (clipboard) {
             newButton.innerText = `[${key}] Copy`
             newButton.addEventListener("click", () => {
-              clipboard
-                .writeText(transformedValue)
-                .then(() => {
-                  infoBox.innerText = timestamped(`Copied ${key}`)
-                })
-                .catch((exc) => {
-                  timestamped(`Exception in clipboard.writeText: ${exc}`)
-                })
+              try {
+                clipboard
+                  .writeText(transformedValue)
+                  .then(() => {
+                    infoBox.innerText = timestamped(`Copied ${key}`)
+                  })
+                  .catch((exc) => {
+                    infoBox.innerText = timestamped(
+                      `Exception in clipboard.writeText: ${exc}`,
+                    )
+                  })
+              } catch (exc) {
+                infoBox.innerText = timestamped(
+                  `Exception in clipboard handling: ${exc}`,
+                )
+              }
             })
           } else {
             newButton.innerText = `[${key}] Clipboard is unavailable. Manually copy from below:`
